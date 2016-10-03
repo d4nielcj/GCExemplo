@@ -71,4 +71,11 @@ public class ContratoTest {
             fail();
         }
     }
+    
+    public void testeAnexarArquivo() {
+        Contrato c = new Contrato();
+        c.setId(1);
+        
+        
+    }
 }

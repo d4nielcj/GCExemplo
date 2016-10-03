@@ -31,6 +31,8 @@ public class ConfigurationManager {
             USUARIO_BUSCAR_POR_ID = config.getProperty("usuario.buscarPorId");
             USUARIO_UPDATE = config.getProperty("usuario.update");
             USUARIO_AUTENTICAR = config.getProperty("usuario.autenticar");
+            
+            CONTRATO_ANEXAR_DOCUMENTO = config.getProperty("contrato.anexarDocumento");
         } catch (IOException ex) {
             Logger.getLogger(ConfigurationManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -49,6 +51,11 @@ public class ConfigurationManager {
     public static String USUARIO_BUSCAR_POR_ID;
     public static String USUARIO_UPDATE;
     public static String USUARIO_AUTENTICAR;
+    
+    /*
+        SQL da entidade Contrato
+    */
+    public static String CONTRATO_ANEXAR_DOCUMENTO;
 }
 
 

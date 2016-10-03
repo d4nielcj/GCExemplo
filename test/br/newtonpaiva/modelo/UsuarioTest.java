@@ -36,17 +36,12 @@ public class UsuarioTest {
     
     @Before
     public void setUp() throws SQLException {
-        u = new Usuario();
-        u.setNome("Administrador");
-        u.setLogin("admin");
-        u.setSenha("123");
-        u.setEmail("tarley.lana@gmail.com");
-        u.salvar();
+        
     }
     
     @After
     public void tearDown() throws SQLException {
-        Usuario.excluir(u.getId());
+        
     }
 
     /**

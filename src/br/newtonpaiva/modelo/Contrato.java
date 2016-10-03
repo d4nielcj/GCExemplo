@@ -6,22 +6,23 @@
 package br.newtonpaiva.modelo;
 
 import br.newtonpaiva.modelo.excecoes.ContratoInvalidoException;
-import br.newtonpaiva.util.BdUtil;
 import static br.newtonpaiva.util.ConfigurationManager.DB_SENHA;
 import static br.newtonpaiva.util.ConfigurationManager.DB_URL;
 import static br.newtonpaiva.util.ConfigurationManager.DB_USUARIO;
 import static br.newtonpaiva.util.ConfigurationManager.USUARIO_INSERT;
 import java.math.BigDecimal;
+import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Objects;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Objects;
-import static br.newtonpaiva.util.BdUtil.*;
 
 /**
  *
@@ -292,7 +293,7 @@ public class Contrato {
         }
         
         // Salvar contrato
-        
+        /*
         try (Connection con = DriverManager.getConnection(
                 DB_URL, DB_USUARIO, DB_SENHA);
                 PreparedStatement stm = con.prepareStatement(
@@ -312,5 +313,30 @@ public class Contrato {
                 throw new SQLException("Não foi possivel inserir o usuário");
             }
         }
+        */
+    }
+    
+    public void anexarDocumento(String arquivo) throws FileNotFoundException, SQLException {
+        InputStream in = new FileInputStream(arquivo);
+        
+        try (Connection con = DriverManager.getConnection(
+                    DB_URL, DB_USUARIO, DB_SENHA);
+                    PreparedStatement stm = con.prepareStatement(
+                            USUARIO_INSERT, Statement.RETURN_GENERATED_KEYS)) {
+
+                stm.setInt(1, getId());
+                stm.setBlob(2, in);
+                
+                stm.executeUpdate();
+
+                ResultSet rs = stm.getGeneratedKeys();
+                if (rs.next()) {
+                    Documento doc = new Documento();
+                    doc.setId(rs.getInt(1));
+                    setDocumento(doc);
+                } else {
+                    throw new SQLException("Não foi possivel anexar o arquivo");
+                }
+            }
     }
 }

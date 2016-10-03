@@ -11,6 +11,9 @@ and open the template in the editor.
     <entry key="db.usuario">root</entry>
     <entry key="db.senha"></entry>
     
+    <!--
+        Usuario
+    -->
     <entry key="usuario.insert">
         insert into usuario
         (
@@ -20,20 +23,17 @@ and open the template in the editor.
             des_email
         )
         values(?, ?, ?, ?)
-    </entry>
-    
+    </entry>    
     <entry key="usuario.delete">
         delete from usuario where cod_usuario = ?
-    </entry>
-    
+    </entry>    
     <entry key="usuario.buscarTodos">
         select  cod_usuario,
                 nom_usuario,
                 des_login,
                 des_email
            from usuario
-    </entry>
-    
+    </entry>    
     <entry key="usuario.buscarPorId">
         select  cod_usuario,
                 nom_usuario,
@@ -54,7 +54,16 @@ and open the template in the editor.
          select cod_senha
            from usuario
           where des_login = ? 
+    </entry>    
+    
+    <!--
+    Contrato
+    -->
+    <entry key="contrato.anexarDocumento">
+         INSERT INTO `documento_digitalizado`(`COD_CONTRATO`, `IMG_DOCUMENTO`) 
+         VALUES (?,?)
     </entry>
+    
 </properties>
 
 
