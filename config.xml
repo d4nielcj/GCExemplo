@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="db.url">jdbc:mysql://localhost:3306/bd_gescon</entry>
+    <entry key="db.usuario">root</entry>
+    <entry key="db.senha"></entry>
+    
+    <entry key="usuario.insert">
+        insert into usuario
+        (
+            nom_usuario,
+            des_login, 
+            cod_senha,
+            des_email
+        )
+        values(?, ?, ?, ?)
+    </entry>
+    
+    <entry key="usuario.delete">
+        delete from usuario where cod_usuario = ?
+    </entry>
+    
+    <entry key="usuario.buscarTodos">
+        select  cod_usuario,
+                nom_usuario,
+                des_login,
+                des_email
+           from usuario
+    </entry>
+    
+    <entry key="usuario.buscarPorId">
+        select  cod_usuario,
+                nom_usuario,
+                des_login,
+                des_email
+           from usuario
+          where cod_usuario = ? 
+    </entry>
+    <entry key="usuario.update">
+        update  usuario
+           set  nom_usuario=?,
+                des_login=?,
+                cod_senha=?,
+                des_email=?
+        where cod_usuario = ? 
+    </entry>
+    <entry key="usuario.autenticar">
+         select cod_senha
+           from usuario
+          where des_login = ? 
+    </entry>
+</properties>
+
+
+
+
+
+
+
+
